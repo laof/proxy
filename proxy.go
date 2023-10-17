@@ -20,7 +20,9 @@ func Get(url string) string {
 		log.Println("start sandbox failed:" + err.Error())
 		return ""
 	}
+
 	defer res.Body.Close()
+	log.Println("start sandbox ...")
 
 	time.Sleep(3 * time.Second)
 
