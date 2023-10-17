@@ -10,13 +10,14 @@ import (
 func Get(url string) string {
 
 	if ok, e := load(url); e == nil {
+		log.Println("get content successfully")
 		return ok
 	}
 
 	res, err := http.Get("https://codesandbox.io/p/sandbox/k2ytyw")
 
 	if err != nil {
-		log.Println(err.Error())
+		log.Println("start sandbox failed:" + err.Error())
 		return ""
 	}
 	defer res.Body.Close()
@@ -32,6 +33,7 @@ func load(target string) (string, error) {
 	res, err := http.Get("https://k2ytyw-8080.csb.app?url=" + target)
 
 	if err != nil {
+		log.Println("preview failed: " + err.Error())
 		return "", err
 	}
 	defer res.Body.Close()
