@@ -34,7 +34,7 @@ function start(port) {
   createServer((req, res) => {
     const parts = parse(req.url, true);
     const query = parts.query;
-
+    res.setHeader("access-control-allow-origin", "*");
     if (
       query.url &&
       ['https://', 'http://'].find((h) => query.url.startsWith(h))
